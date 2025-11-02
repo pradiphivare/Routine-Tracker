@@ -1,18 +1,16 @@
-# Use Node.js image
+# backend/Dockerfile
 FROM node:20-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Copy package files and install dependencies
-COPY package*.json ./
+# Copy package files first for dependency caching
+COPY ./backend/package*.json ./
+
 RUN npm install --production
 
 # Copy all source code
-COPY . .
+COPY ./backend .
 
-# Expose API port
 EXPOSE 5000
 
-# Start backend
-CMD ["npm", "start"]
+CMD ["node", "src/index.js"]
