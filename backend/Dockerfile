@@ -3,14 +3,13 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy package files first for dependency caching
+# Copy package.json and install dependencies
 COPY ./backend/package*.json ./
-
 RUN npm install --production
 
-# Copy all source code
+# Copy all backend source code
 COPY ./backend .
 
-EXPOSE 5000
-
-CMD ["node", "src/index.js"]
+EXPOSE 3000
+CMD ["npm", "start"]
+# --- IGNORE ---
