@@ -6,3 +6,5 @@ Dockerfile.dev
 docker-compose.yml
 .gitignore
 .env
+
+# Ignore VSCode settings folder
