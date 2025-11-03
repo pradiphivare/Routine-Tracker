@@ -1,14 +1,15 @@
-# backend/Dockerfile
 FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy package.json and install dependencies
-COPY package*.json ./
-RUN npm install --production
+# Copy package.json and package-lock.json
+COPY backend/package*.json ./
+
+# Install production dependencies
+RUN npm install --omit=dev
 
 # Copy all backend source code
-COPY . .
+COPY backend/ ./
 
 EXPOSE 3000
 CMD ["npm", "start"]
